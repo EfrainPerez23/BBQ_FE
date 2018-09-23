@@ -1,0 +1,22 @@
+<agm-marker [latitude]="marker.geometry.location.lat" [longitude]="marker.geometry.location.lng" [label]="marker.icon | safeUrl" >
+
+  <agm-snazzy-info-window [isOpen]="true" [latitude]="marker.geometry.location.lat" [longitude]="marker.geometry.location.lat"
+    [closeWhenOthersOpen]="true" [maxWidth]="400" *ngIf="marker" >
+    <ng-template>
+        <div class="marker--container">
+            <button mat-raised-button
+                matTooltip="Rent"
+                [matTooltipPosition]="toolTip"
+                aria-label="Button that displays a tooltip in various positions">
+                <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
+            </button>
+            <div class="info">
+              <h1>{{marker.name}}</h1>
+            </div>
+        </div>
+        <img [src]="googleApiPhoto | safeUrl" alt="photo">
+      My first Snazzy Info Window!
+      <app-mat-star-rating [rating]="5"  [starCount]="marker.rating" [color]="'primary'"></app-mat-star-rating>
+    </ng-template>
+  </agm-snazzy-info-window>
+</agm-marker>
