@@ -1,0 +1,12 @@
+
+.rent--name {
+  margin-left: 8px;
+  position: relative;
+  p {
+    display: inline;
+  }
+  mat-icon {
+    position: absolute;
+    top: 4px;
+  }
+}
