@@ -1,0 +1,26 @@
+<h1>Before to rent it, you have to fill these fields</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp3" placeholder="Date to rent" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Select your grill model" formControlName="model" id="model">
+        <mat-option [value]="model" *ngFor="let model of grillModels">{{model}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button [disabled]="!form.valid" color="primary">Ren it! <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
+    <button mat-raised-button class="cancel--button" (click)="onNoClick()" color="warn">Cancel</button>
+  </div>
+
+</form>

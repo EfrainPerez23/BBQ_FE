@@ -1,0 +1,7 @@
+<mat-progress-spinner [color]="'primary'" [mode]="'indeterminate'">
+</mat-progress-spinner>
+
+
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+  <app-marker *ngFor="let marker of results" [marker]="marker" ></app-marker>
+</agm-map>
