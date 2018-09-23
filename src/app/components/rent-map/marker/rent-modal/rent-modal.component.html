@@ -13,6 +13,7 @@
   <div>
     <mat-form-field>
       <mat-select placeholder="Select your grill model" formControlName="model" id="model">
+          <mat-option [value]="null">Select your grill model</mat-option>
         <mat-option [value]="model" *ngFor="let model of grillModels">{{model}}</mat-option>
       </mat-select>
     </mat-form-field>
