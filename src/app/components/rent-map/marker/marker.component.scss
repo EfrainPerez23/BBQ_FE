@@ -1,9 +1,7 @@
-.si-content-wrapper {
-  transition: 0.5s ease;
-  width: 300px !important;
-  padding: 0;
-  .si-content {
-    max-width: none;
-    max-height: none;
-  }
+mat-chip {
+  padding: 5px;
+  border-radius: 6px;
+}
+.rent--button {
+  float: right;
 }

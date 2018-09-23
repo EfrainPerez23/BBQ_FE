@@ -1,22 +1,33 @@
-<agm-marker [latitude]="marker.geometry.location.lat" [longitude]="marker.geometry.location.lng" [label]="marker.icon | safeUrl" >
+<agm-marker [latitude]="marker.geometry.location.lat" [longitude]="marker.geometry.location.lng" [iconUrl]="marker.icon">
 
   <agm-snazzy-info-window [isOpen]="true" [latitude]="marker.geometry.location.lat" [longitude]="marker.geometry.location.lat"
-    [closeWhenOthersOpen]="true" [maxWidth]="400" *ngIf="marker" >
+    [closeWhenOthersOpen]="true" [maxWidth]="900" [maxHeight]="900" *ngIf="marker" [padding]="'20px'">
     <ng-template>
-        <div class="marker--container">
-            <button mat-raised-button
-                matTooltip="Rent"
-                [matTooltipPosition]="toolTip"
-                aria-label="Button that displays a tooltip in various positions">
-                <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
-            </button>
-            <div class="info">
-              <h1>{{marker.name}}</h1>
-            </div>
+      <div class="marker--container">
+        <div>
+          <button mat-raised-button matTooltip="See more" [matTooltipPosition]="toolTip" color="accent" aria-label="Button that displays a tooltip in various positions">
+            See more
+            <mat-icon class="mat-icon-rtl-mirror">location_on</mat-icon>
+          </button>
+          <button class="rent--button" mat-raised-button matTooltip="Rent" color="primary" [matTooltipPosition]="toolTip" aria-label="Button that displays a tooltip in various positions">
+            Rent it!
+            <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
+          </button>
         </div>
-        <img [src]="googleApiPhoto | safeUrl" alt="photo">
-      My first Snazzy Info Window!
-      <app-mat-star-rating [rating]="5"  [starCount]="marker.rating" [color]="'primary'"></app-mat-star-rating>
+        <div class="info">
+          <h1>{{marker.name}}</h1>
+        </div>
+      </div>
+      <img [src]="googleApiPhoto | safeUrl" alt="photo">
+      <div>
+        <b>Rating:</b>
+        <app-mat-star-rating [rating]="5" [starCount]="marker.rating" [color]="'primary'"></app-mat-star-rating>
+        <p><b>Open Now: </b>
+          <mat-chip selected [color]="marker.opening_hours.open_now ? 'primary' : 'warn'">{{marker.opening_hours.open_now
+            ? 'Yes' : 'No'}}</mat-chip>
+        </p>
+        <p><b>Vicinity:</b> {{marker.vicinity}}</p>
+      </div>
     </ng-template>
   </agm-snazzy-info-window>
 </agm-marker>
