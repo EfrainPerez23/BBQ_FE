@@ -9,6 +9,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatInputModule } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -22,7 +27,12 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTooltipModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   exports: [
     MatButtonModule,
@@ -35,7 +45,12 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTooltipModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {}

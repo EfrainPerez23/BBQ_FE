@@ -5,11 +5,11 @@
     <ng-template>
       <div class="marker--container">
         <div>
-          <button mat-raised-button matTooltip="See more" [matTooltipPosition]="toolTip" color="accent" aria-label="Button that displays a tooltip in various positions">
+          <a mat-raised-button routerLink="/hola" matTooltip="See more" [matTooltipPosition]="toolTip" color="accent" aria-label="Button that displays a tooltip in various positions">
             See more
             <mat-icon class="mat-icon-rtl-mirror">location_on</mat-icon>
-          </button>
-          <button class="rent--button" mat-raised-button matTooltip="Rent" color="primary" [matTooltipPosition]="toolTip" aria-label="Button that displays a tooltip in various positions">
+          </a>
+          <button class="rent--button" (click)="rentIt()" mat-raised-button matTooltip="Rent" color="primary" [matTooltipPosition]="toolTip" aria-label="Button that displays a tooltip in various positions">
             Rent it!
             <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
           </button>
@@ -22,7 +22,7 @@
       <div>
         <b>Rating:</b>
         <app-mat-star-rating [rating]="5" [starCount]="marker.rating" [color]="'primary'"></app-mat-star-rating>
-        <p><b>Open Now: </b>
+        <p *ngIf="marker.opening_hours" ><b>Open Now: </b>
           <mat-chip selected [color]="marker.opening_hours.open_now ? 'primary' : 'warn'">{{marker.opening_hours.open_now
             ? 'Yes' : 'No'}}</mat-chip>
         </p>

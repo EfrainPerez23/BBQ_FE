@@ -21,7 +21,7 @@ export class RentMapComponent implements OnInit {
         const coords: Coordinates = position.coords;
         this.lat = coords.latitude;
         this.lng = coords.longitude;
-        this.rentService.getNearbyGrillPlaces(this.lat, this.lng, 4500).subscribe((results: MapResults): void => {
+        this.rentService.getNearbyGrillPlaces(this.lat, this.lng, 5000).subscribe((results: MapResults): void => {
           if (results) {
             this._results = results.results;
           }

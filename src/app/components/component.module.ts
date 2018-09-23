@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { GlobalModule } from '../global/components/global.module';
 import { SafeUrlPipe } from '../global/pipes/safe-url.pipe';
+import { RentModalComponent } from './rent-map/marker/rent-modal/rent-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,9 +28,11 @@ import { SafeUrlPipe } from '../global/pipes/safe-url.pipe';
     MaterialModule,
     HttpClientModule,
     NgbModule,
-    GlobalModule
+    GlobalModule,
+    ReactiveFormsModule
   ],
-  declarations: [RentMapComponent, MarkerComponent, SafeUrlPipe],
-  exports: [RentMapComponent, MarkerComponent]
+  declarations: [RentMapComponent, MarkerComponent, SafeUrlPipe, RentModalComponent],
+  exports: [RentMapComponent, MarkerComponent, RentModalComponent],
+  entryComponents: [RentModalComponent]
 })
 export class ComponentModule { }

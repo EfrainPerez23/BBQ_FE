@@ -11,7 +11,7 @@ export class RentService {
 
   private nearbyPlacePath = `${environment.googleMapApi}/place/nearbysearch/json`;
   private type = 'restaurant';
-  private keyword = 'grill+booking';
+  private keyword = 'grill';
 
   constructor(private http: HttpClient) { }
 
