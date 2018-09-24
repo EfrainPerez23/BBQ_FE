@@ -16,18 +16,6 @@
 agm-map {
   height: 300px;
 }
-.line-text {
-  display: flex;
-  position: relative;
-  &::after {
-    content: "";
-    border-bottom: 2px solid #dbdbdb;
-    width: 100%;
-    margin-left: 10px;
-    margin-bottom: 9px;
-  }
-}
-
 .timer {
   position: relative;
   top: 6px;
@@ -49,6 +37,9 @@ agm-map {
         margin: 0;
         padding-top: 12px;
         text-transform: capitalize;
+      }
+      .review--text {
+        overflow-wrap: break-word;
       }
       small {
         text-transform: capitalize;
