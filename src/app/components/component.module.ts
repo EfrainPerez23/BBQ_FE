@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RentProfileComponent } from './rent-profile/rent-profile.component';
 import { MyRentsComponent } from './my-rents/my-rents.component';
 import { RentComponent } from './my-rents/rent/rent.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -34,8 +35,24 @@ import { RentComponent } from './my-rents/rent/rent.component';
     GlobalModule,
     ReactiveFormsModule
   ],
-  declarations: [RentMapComponent, MarkerComponent, SafeUrlPipe, RentModalComponent, RentProfileComponent, MyRentsComponent, RentComponent],
-  exports: [RentMapComponent, MarkerComponent, RentModalComponent, RentProfileComponent, MyRentsComponent, RentComponent],
+  declarations: [
+    RentMapComponent,
+    MarkerComponent,
+    SafeUrlPipe,
+    RentModalComponent,
+    RentProfileComponent,
+    MyRentsComponent,
+    RentComponent,
+    ProfileComponent
+  ],
+  exports: [
+    RentMapComponent,
+    MarkerComponent,
+    RentModalComponent,
+    RentProfileComponent,
+    MyRentsComponent,
+    RentComponent
+  ],
   entryComponents: [RentModalComponent]
 })
-export class ComponentModule { }
+export class ComponentModule {}
