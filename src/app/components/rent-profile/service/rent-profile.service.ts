@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class RentProfileService {
 
   // tslint:disable-next-line:max-line-length
-  private filedParam = 'photo,vicinity,formatted_address,name,website,rating,formatted_phone_number,geometry,international_phone_number,reviews,opening_hours/weekday_text';
+  private filedParam = 'photo,vicinity,place_id,formatted_address,name,website,rating,formatted_phone_number,geometry,international_phone_number,reviews,opening_hours/weekday_text';
   private detailPath = `${environment.googleMapApi}/place/details/json`;
 
   public constructor(private http: HttpClient) { }
