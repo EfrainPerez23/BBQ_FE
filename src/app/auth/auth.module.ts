@@ -7,13 +7,19 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { MaterialModule } from '../material-module/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMapKey,
+      libraries: ['places', 'geometry']
+    }),
   ],
   declarations: [ AuthComponent, SignInComponent, SignUpComponent ],
   exports: [ AuthComponent, SignInComponent, SignUpComponent ]

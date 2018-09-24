@@ -1,3 +1,57 @@
-<p>
-  sign-up works!
-</p>
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container sign--in--container">
+      <div>
+        <mat-form-field class="col-xs-12 col-lg-4">
+          <input matInput type="text" placeholder="Enter your Name" formControlName="name">
+          <mat-error *ngIf="!form.get('name').valid && form.get('name').touched">Please enter your name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-lg-4">
+          <input matInput type="text" placeholder="Enter your Last Name" formControlName="lastName">
+          <mat-error *ngIf="!form.get('lastName').valid && form.get('lastName').touched">Please enter your Last Name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-lg-4">
+          <input matInput type="number" placeholder="Enter your age" formControlName="age">
+          <mat-error *ngIf="!form.get('age').valid && form.get('age').touched">Please enter your age</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="w-100 col-12">
+        <input matInput type="email" placeholder="Enter your email" formControlName="email">
+        <mat-error *ngIf="!form.get('email').valid && form.get('email').touched">Please enter your email</mat-error>
+      </mat-form-field>
+      <div formGroupName="passwords">
+        <div>
+          <mat-form-field class="w-100 col-12">
+            <input matInput type="password" placeholder="Enter your password" formControlName="password">
+            <mat-error *ngIf="!form.get('passwords.password').valid && form.get('passwords.password').touched">Please
+              enter your password</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-100 col-12">
+            <input matInput type="password" placeholder="Repeat password" formControlName="confirmPassword">
+            <mat-error *ngIf="!form.get('passwords.confirmPassword').valid && form.get('passwords.confirmPassword').touched">Please
+              repeat your password</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-error class="col-12" *ngIf="form.get('passwords').errors  && form.get('passwords.password').touched  && form.get('passwords.confirmPassword').touched">
+            Passwords do not match
+          </mat-error>
+      </div>
+      <div class="col-12">
+        <h3>Please select your coords</h3>
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16" (mapClick)="mapClick($event)">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+        <mat-form-field class="d-none">
+          <input matInput type="text" placeholder="Enter your Last Name" formControlName="lastName">
+        </mat-form-field>
+        <mat-error *ngIf="!form.get('coords').valid">Please enter your Last Name</mat-error>
+      </div>
+
+      <div class="col-12">
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
