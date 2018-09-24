@@ -30,4 +30,18 @@ export class RentService {
   public rentBBQ(bbq: BQQ ): Observable<{message: string, data: BQQ}> {
     return this.http.post<{message: string, data: BQQ}>(this.rentPath, bbq);
   }
+
+  public getAllRents(): Observable<{message: string, data: BQQ[]}> {
+    return this.http.get<{message: string, data: BQQ[]}>(this.rentPath);
+  }
+
+  public favoriteRent(bbq: BQQ ): Observable<{message: string, data: BQQ}> {
+    bbq.favorite = !bbq.favorite;
+    return this.http.put<{message: string, data: BQQ}>(`${this.rentPath}/${bbq.id}`, bbq);
+  }
+
+  public deleteRent(id: number): Observable<{message: string, data: {id: string}}> {
+    return this.http.delete<{message: string, data: {id: string}}>(`${this.rentPath}/${id}`);
+  }
+
 }

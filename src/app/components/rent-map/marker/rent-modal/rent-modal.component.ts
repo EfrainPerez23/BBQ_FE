@@ -68,6 +68,8 @@ export class RentModalComponent implements OnInit {
         let message = 'Try again...';
         if (error.status === 401) {
           message = error.error.description;
+        } else if (error.status === 500) {
+          message = 'You have already rent it. Select another one ';
         }
         this.snackBar.openFromComponent(InvalidSnackBarComponent, {
           duration: 2000,
