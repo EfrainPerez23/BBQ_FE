@@ -18,8 +18,8 @@ export class RentMapComponent implements OnInit {
 
   public constructor(private rentService: RentService, private localStorage: LocalStorageService) {
     const data: any = JSON.parse(this.localStorage.getItem('user'));
-    this.lat = data.user.latitude;
-    this.lng = data.user.longitude;
+    this.lat = data ? data.user.latitude : this.lat;
+    this.lng = data ? data.user.longitude : this.lng;
     this.rentService.getNearbyGrillPlaces(this.lat, this.lng, 5000).subscribe((results: MapResults): void => {
       if (results) {
         this._results = results.results;
