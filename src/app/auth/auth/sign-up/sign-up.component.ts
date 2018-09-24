@@ -52,8 +52,8 @@ export class SignUpComponent implements OnInit {
         age: values.age,
         email: values.email,
         password: values.passwords.confirmPassword,
-        latitude: values.coords.latitude,
-        longitude: values.coords.longitude
+        latitude: values.coords.lat,
+        longitude: values.coords.lng
 
       };
       this.authService.signUp(data).subscribe((newUser: {message: string, data: SignUpUser}): void => {

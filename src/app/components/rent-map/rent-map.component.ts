@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../global/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { RentService } from './service/rent.service';
 import { MapResults, Result } from './model/map';
@@ -15,19 +16,15 @@ export class RentMapComponent implements OnInit {
   lat = 51.678418;
   lng = 7.809007;
 
-  public constructor(private rentService: RentService) {
-    if (navigator) {
-      navigator.geolocation.getCurrentPosition((position: Position): void => {
-        const coords: Coordinates = position.coords;
-        this.lat = coords.latitude;
-        this.lng = coords.longitude;
-        this.rentService.getNearbyGrillPlaces(this.lat, this.lng, 5000).subscribe((results: MapResults): void => {
-          if (results) {
-            this._results = results.results;
-          }
-        });
-      });
-    }
+  public constructor(private rentService: RentService, private localStorage: LocalStorageService) {
+    const data: any = JSON.parse(this.localStorage.getItem('user'));
+    this.lat = data.user.latitude;
+    this.lng = data.user.longitude;
+    this.rentService.getNearbyGrillPlaces(this.lat, this.lng, 5000).subscribe((results: MapResults): void => {
+      if (results) {
+        this._results = results.results;
+      }
+    });
   }
 
   public ngOnInit(): void { }
