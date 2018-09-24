@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.my-2 {
+  margin: 20px 0px;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.mat-progress-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%
+}
+
