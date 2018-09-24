@@ -15,6 +15,8 @@ import { SafeUrlPipe } from '../global/pipes/safe-url.pipe';
 import { RentModalComponent } from './rent-map/marker/rent-modal/rent-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RentProfileComponent } from './rent-profile/rent-profile.component';
+import { MyRentsComponent } from './my-rents/my-rents.component';
+import { RentComponent } from './my-rents/rent/rent.component';
 
 
 @NgModule({
@@ -32,8 +34,8 @@ import { RentProfileComponent } from './rent-profile/rent-profile.component';
     GlobalModule,
     ReactiveFormsModule
   ],
-  declarations: [RentMapComponent, MarkerComponent, SafeUrlPipe, RentModalComponent, RentProfileComponent],
-  exports: [RentMapComponent, MarkerComponent, RentModalComponent, RentProfileComponent],
+  declarations: [RentMapComponent, MarkerComponent, SafeUrlPipe, RentModalComponent, RentProfileComponent, MyRentsComponent, RentComponent],
+  exports: [RentMapComponent, MarkerComponent, RentModalComponent, RentProfileComponent, MyRentsComponent, RentComponent],
   entryComponents: [RentModalComponent]
 })
 export class ComponentModule { }

@@ -11,8 +11,20 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 }
 
 .mat-progress-spinner {
-  position: absolute;
+  position: absolute !important;
   left: 50%;
   top: 50%
 }
 
+
+.line-text {
+  display: flex;
+  position: relative;
+  &::after {
+    content: "";
+    border-bottom: 2px solid #dbdbdb;
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 9px;
+  }
+}

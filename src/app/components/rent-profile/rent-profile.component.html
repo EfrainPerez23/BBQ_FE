@@ -33,12 +33,11 @@
       <div class="review--card-title">
         <div class="review--card-content">
           <a [href]="review.author_url">
-            <img [src]="review.profile_photo_url" src="http://icons.iconarchive.com/icons/graphicloads/100-flat/128/home-icon.png"
-              alt="3123">
+            <img [src]="review.profile_photo_url" alt="3123">
           </a>
           <p class="review--card-author">{{review.author_name}}</p>
           <small>{{review.relative_time_description}}</small>
-          <p>{{review.text}}</p>
+          <p class="review--text">{{review.text}}</p>
           <p>Rating: <app-mat-star-rating [rating]="5" [starCount]="review.rating" [color]="'primary'"></app-mat-star-rating></p>
         </div>
       </div>
