@@ -9,3 +9,10 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .mb-2 {
   margin-bottom: 20px;
 }
+
+.mat-progress-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%
+}
+
