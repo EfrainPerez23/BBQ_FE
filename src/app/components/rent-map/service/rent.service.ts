@@ -13,7 +13,7 @@ export class RentService {
   private type = 'restaurant';
   private keyword = 'grill';
 
-  constructor(private http: HttpClient) { }
+  public constructor(private http: HttpClient) { }
 
   public getNearbyGrillPlaces(lat: number, lng: number, radius: number): Observable<MapResults> {
     let params = new HttpParams();

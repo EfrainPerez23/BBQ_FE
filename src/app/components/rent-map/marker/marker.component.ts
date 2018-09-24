@@ -5,7 +5,6 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../../../environments/environment';
 import { RentModalComponent } from './rent-modal/rent-modal.component';
 
-declare var google: any;
 @Component({
   selector: 'app-marker',
   templateUrl: './marker.component.html',
@@ -25,16 +24,7 @@ export class MarkerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // const a: Geocoder;
     this.googleApiPhoto += `photoreference=${this.marker.photos[0].photo_reference}&key=${this.googleMapKey}`;
-    // const geocoder = new google.maps.Geocoder;
-    // geocoder.geocode({'placeId': 'ChIJjXgrPuejrI8R52REsaWYlwI'}, function(results, status) {
-    //   debugger;
-    //   if (status === 'OK') {
-    //   } else {
-    //     window.alert('Geocoder failed due to: ' + status);
-    //   }
-    // });
   }
 
   public rentIt(): void {

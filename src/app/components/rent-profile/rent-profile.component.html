@@ -1,0 +1,53 @@
+<mat-progress-spinner [color]="'primary'" [mode]="'indeterminate'" *ngIf="!rentResult">
+</mat-progress-spinner>
+
+<div class="container" *ngIf="rentResult">
+  <img [src]="googleApiPhoto | safeUrl" [alt]="rentResult.name" class="rent--profile--photo mb-2">
+  <div class="rent--main--info mb-2">
+    <h1>{{ rentResult.name}}</h1>
+    <app-mat-star-rating [rating]="5" [starCount]="rentResult.rating" [color]="'primary'"></app-mat-star-rating>
+    <h3 class="rent--profile--number">Phone number: <a [href]="'tel' + rentResult.international_phone_number">{{rentResult.international_phone_number}}
+        <mat-icon class="mat-icon-rtl-mirror">local_phone</mat-icon></a></h3>
+    <h3>Vicinity : {{rentResult.vicinity}}</h3>
+  </div>
+  <div class="card mb-2">
+    <mat-card>
+      <mat-list>
+        <h3 mat-subheader>Opening Hours</h3>
+        <mat-list-item *ngFor="let day of rentResult.opening_hours.weekday_text">
+          <p mat-line class="opening--horus"> <mat-icon mat-list-icon class="timer">timer</mat-icon>  {{ day }} </p>
+        </mat-list-item>
+
+      </mat-list>
+    </mat-card>
+  </div>
+  <div class="mb-2 my-4">
+    <agm-map [latitude]="rentResult.geometry.location.lat" [longitude]="rentResult.geometry.location.lng" [zoom]="15">
+      <agm-marker [latitude]="rentResult.geometry.location.lat" [longitude]="rentResult.geometry.location.lng">
+      </agm-marker>
+    </agm-map>
+  </div>
+  <div class="rent--reviewers">
+    <h3 class="line-text">Reviews</h3>
+    <mat-card class="review--card" *ngFor="let review of rentResult.reviews">
+      <div class="review--card-title">
+        <div class="review--card-content">
+          <a [href]="review.author_url">
+            <img [src]="review.profile_photo_url" src="http://icons.iconarchive.com/icons/graphicloads/100-flat/128/home-icon.png"
+              alt="3123">
+          </a>
+          <p class="review--card-author">{{review.author_name}}</p>
+          <small>{{review.relative_time_description}}</small>
+          <p>{{review.text}}</p>
+          <p>Rating: <app-mat-star-rating [rating]="5" [starCount]="review.rating" [color]="'primary'"></app-mat-star-rating></p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <button mat-fab class="rent-button" (click)="rentIt()" matTooltip="Rent it!" [matTooltipPosition]="toolTip" color="accent" aria-label="Button that displays a tooltip in various positions">
+      <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
+    </button>
+
+</div>
+
+
