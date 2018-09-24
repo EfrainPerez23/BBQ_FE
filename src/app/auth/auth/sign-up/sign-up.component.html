@@ -50,7 +50,7 @@
       </div>
 
       <div class="col-12">
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Sign Up</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Sign Up  <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
       </div>
     </div>
   </form>

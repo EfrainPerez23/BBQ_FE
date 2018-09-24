@@ -9,6 +9,9 @@ import { MaterialModule } from '../material-module/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { GlobalModule } from '../global/components/global.module';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,8 +23,14 @@ import { environment } from '../../environments/environment';
       apiKey: environment.googleMapKey,
       libraries: ['places', 'geometry']
     }),
+    HttpClientModule,
+    GlobalModule
   ],
   declarations: [ AuthComponent, SignInComponent, SignUpComponent ],
-  exports: [ AuthComponent, SignInComponent, SignUpComponent ]
+  exports: [ AuthComponent, SignInComponent, SignUpComponent ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ]
 })
 export class AuthModule { }

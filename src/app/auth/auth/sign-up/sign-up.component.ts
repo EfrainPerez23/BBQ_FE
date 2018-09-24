@@ -1,5 +1,10 @@
+import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { SignUpUser } from '../../service/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { InvalidSnackBarComponent } from '../../../global/components/invalid-snack-bar/invalid-snack-bar.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,8 +16,9 @@ export class SignUpComponent implements OnInit {
   public form: FormGroup;
   public lat: number;
   public lng: number;
+  public loading: boolean;
 
-  public constructor() {
+  public constructor(private authService: AuthService, private snackBar: MatSnackBar) {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
@@ -38,7 +44,38 @@ export class SignUpComponent implements OnInit {
   public ngOnInit(): void { }
 
   public onSubmit(): void {
-    console.log(this.form);
+    if (this.form.value) {
+      const values: any = this.form.value;
+      const data: SignUpUser = {
+        name: values.name,
+        lastName: values.lastName,
+        age: values.age,
+        email: values.email,
+        password: values.passwords.confirmPassword,
+        latitude: values.coords.latitude,
+        longitude: values.coords.longitude
+
+      };
+      this.authService.signUp(data).subscribe((newUser: {message: string, data: SignUpUser}): void => {
+        if (newUser) {
+          this.snackBar.openFromComponent(InvalidSnackBarComponent, {
+            duration: 2000,
+            data: 'Please Sign in to continue...'
+          });
+        }
+        this.loading = false;
+      }, (error: HttpErrorResponse): void => {
+        this.loading = false;
+        let message = 'Try again...';
+        if (error.status === 401) {
+          message = error.error.description;
+        }
+        this.snackBar.openFromComponent(InvalidSnackBarComponent, {
+          duration: 2000,
+          data: message
+        });
+      });
+    }
   }
 
   public mapClick(position: {coords: {lat: number, lng: number}}): void {
