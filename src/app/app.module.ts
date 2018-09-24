@@ -8,6 +8,7 @@ import { MaterialModule } from './material-module/material.module';
 import { CoreModule } from './core/core.module';
 import { ComponentModule } from './components/component.module';
 import { GlobalModule } from './global/components/global.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GlobalModule } from './global/components/global.module';
     MaterialModule,
     CoreModule,
     ComponentModule,
-    GlobalModule
+    GlobalModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
