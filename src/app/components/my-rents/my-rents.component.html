@@ -1,6 +1,15 @@
-<div *ngIf="rents">
+<div *ngIf="rents; else noRents">
   <div class="container">
-    <h1>Your rents</h1>
-    <app-rent *ngFor="let rent of rents.data" [rent]="rent" (deleted)="delete($event)"></app-rent>
+    <ng-container *ngIf="rents.data.length > 0; else noRents">
+      <h1>Your rents</h1>
+      <app-rent *ngFor="let rent of rents.data" [rent]="rent" (deleted)="delete($event)"></app-rent>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #noRents>
+    <div class="container">
+        <h1>You do not have rents. Please go to the map the add.</h1>
+        <a mat-raised-button color="primary" routerLink="/" >Go to map!</a>
+    </div>
+</ng-template>

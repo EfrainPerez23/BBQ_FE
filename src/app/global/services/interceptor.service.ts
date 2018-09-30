@@ -26,11 +26,9 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-    let copiedReq = req.clone();
-    copiedReq = req.clone({ headers: req.headers.set('Authorization', `JWT ${this.authService.getToken()}`)});
+    const copiedReq = req.clone({ headers: req.headers.set('Authorization', `JWT ${this.authService.getToken()}`)});
     return next.handle(copiedReq).pipe( tap(
-      (event: any) => {
-      }, (err: any): any => {
+      (event: any) => { }, (err: any): any => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.localStorageService.clearLocalStorage();

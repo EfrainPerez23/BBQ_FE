@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MapResults } from '../model/map';
 import { environment } from '../../../../environments/environment';
@@ -24,7 +24,10 @@ export class RentService {
     params = params.append('type', this.type);
     params = params.append('keyword', this.keyword);
     params = params.append('key', environment.googleMapKey);
-    return this.http.get<MapResults>(`${this.nearbyPlacePath}`, { params });
+    let headers = new HttpHeaders();
+    headers = headers.append('Access-Control-Allow-Origin', '*');
+    headers = headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    return this.http.get<MapResults>(`${this.nearbyPlacePath}`, { params, headers });
   }
 
   public rentBBQ(bbq: BQQ ): Observable<{message: string, data: BQQ}> {

@@ -1,3 +1,37 @@
 .auth--container {
   margin-top: 3%;
+  overflow-x: hidden;
+}
+.fullscreen-vide-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  video {
+    @media screen and (max-width: 540px){
+      width: auto;
+    }
+    width: 100vw;
+  }
+}
+
+.overlay {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #d6c6fd6b;
+  z-index: 0;
+  opacity: 0.35;
+  overflow-x: hidden;
+}
+mat-tab-group {
+  background: white;
+  position: relative;
+  z-index: 1;
+  opacity: 0.8;
 }
