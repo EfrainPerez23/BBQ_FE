@@ -3,6 +3,7 @@ import { Component, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
 import { CoreService } from './core/service/core.service';
+import { AuthService } from './auth/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   public mobileQuery: MediaQueryList;
   private _sideNav: MatSidenav;
 
-  public constructor(private media: MediaMatcher, private coreService: CoreService) {
+  public constructor(private media: MediaMatcher, private coreService: CoreService, private authService: AuthService) {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
   }
 
@@ -28,5 +29,9 @@ export class AppComponent implements OnInit {
   @ViewChild('sideNav')
   public set sideNave(_sideNav: MatSidenav) {
     this._sideNav = _sideNav;
+  }
+
+  public logOut(): void {
+    this.authService.logOut();
   }
 }

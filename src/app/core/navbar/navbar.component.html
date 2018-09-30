@@ -1,4 +1,7 @@
-<mat-toolbar color="primary" class="example-toolbar">
-  <button mat-icon-button (click)="toggle()"><mat-icon>menu</mat-icon></button>
-  <h1 class="rent--name"><p>Rent your BBQ</p> <mat-icon>restaurant</mat-icon></h1>
+<mat-toolbar color="primary">
+  <div class="bbq--brand">
+      <button mat-icon-button (click)="toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="rent--name"><p>Rent your BBQ</p> <mat-icon>restaurant</mat-icon></h1>
+  </div>
+  <button *ngIf="!isAuthenticated" mat-stroked-button mat-raised-button routerLink="/login">Sign In</button>
 </mat-toolbar>
