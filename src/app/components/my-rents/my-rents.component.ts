@@ -24,17 +24,12 @@ export class MyRentsComponent implements OnInit {
         this.rents = data;
       }
     }, (error: HttpErrorResponse): void => {
-      this.loading = false;
-      let message = 'Try again...';
-      if (error.status === 401) {
-        message = error.error.description;
-        this.localStorageService.clearLocalStorage();
-        this.router.navigate(['/login']);
+      if (error.status === 400) {
+        this.snackBar.openFromComponent(InvalidSnackBarComponent, {
+          duration: 2000,
+          data:  error.error.message
+        });
       }
-      this.snackBar.openFromComponent(InvalidSnackBarComponent, {
-        duration: 2000,
-        data: message
-      });
     });
   }
 

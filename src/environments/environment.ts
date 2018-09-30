@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   googleMapApi: 'https://maps.googleapis.com/maps/api',
-  googleMapKey: 'AIzaSyCdQKbs-tzvcfLtAM7sAefM5ZQb28AZhRs',
+  googleMapKey: 'AIzaSyBbOagPWZzYBfh1MfWfkml-tzuqGFXj2jA',
   bbqApi: 'http://127.0.0.1:5000'
 };
 

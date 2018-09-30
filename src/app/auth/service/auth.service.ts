@@ -44,8 +44,8 @@ export class AuthService {
     return this.httpClient.post<{message: string, data: SignUpUser}>(this.signUpPAth, data);
   }
 
-  public getToken(): string  {
-    return JSON.parse(this.localStorageService.getItem('user'))['token'];
+  public getToken(): string | null  {
+    return this.localStorageService.getItem('user') ? JSON.parse(this.localStorageService.getItem('user'))['token'] : null;
   }
 
 }

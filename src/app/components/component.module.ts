@@ -19,6 +19,8 @@ import { MyRentsComponent } from './my-rents/my-rents.component';
 import { RentComponent } from './my-rents/rent/rent.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptorService } from '../global/services/interceptor.service';
+import { LoginInterceptorService } from '../auth/service/login-interceptor.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 
 @NgModule({
@@ -57,6 +59,9 @@ import { AuthInterceptorService } from '../global/services/interceptor.service';
   entryComponents: [RentModalComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_SNACK_BAR_DATA, useValue: [] },
   ]
 })
 export class ComponentModule {}
