@@ -1,12 +1,20 @@
 
-.rent--name {
-  margin-left: 8px;
-  position: relative;
-  p {
-    display: inline;
+mat-toolbar {
+  justify-content: space-between;
+  .bbq--brand {
+    display: flex;
+    .rent--name {
+      margin-left: 8px;
+      margin-top: 5px;
+      position: relative;
+      > p {
+        display: inline;
+      }
+      > mat-icon {
+        position: absolute;
+        top: 4px;
+      }
+    }
   }
-  mat-icon {
-    position: absolute;
-    top: 4px;
-  }
+
 }

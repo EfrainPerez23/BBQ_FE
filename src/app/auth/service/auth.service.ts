@@ -48,4 +48,13 @@ export class AuthService {
     return this.localStorageService.getItem('user') ? JSON.parse(this.localStorageService.getItem('user'))['token'] : null;
   }
 
+  public isAuthenticated(): boolean {
+    return this.localStorageService.getItem('user') !== null;
+  }
+
+  public logOut(): void {
+    this.localStorageService.clearLocalStorage();
+    window.location.href = '/';
+  }
+
 }

@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/service/auth.service';
 import { CoreService } from './../service/core.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavbarComponent implements OnInit {
 
-  public constructor(private coreService: CoreService) { }
+  public isAuthenticated: boolean;
+
+  public constructor(private coreService: CoreService, private authService: AuthService) {
+    this.isAuthenticated = this.authService.isAuthenticated();
+  }
 
   public ngOnInit(): void { }
 
