@@ -14,10 +14,12 @@ export class AppComponent implements OnInit {
 
 
   public mobileQuery: MediaQueryList;
+  public isAuthenticated: boolean;
   private _sideNav: MatSidenav;
 
   public constructor(private media: MediaMatcher, private coreService: CoreService, private authService: AuthService) {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   public ngOnInit(): void {

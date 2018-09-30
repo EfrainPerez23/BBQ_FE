@@ -7,46 +7,61 @@
     <h1>{{ rentResult.name}}</h1>
     <app-mat-star-rating [rating]="5" [starCount]="rentResult.rating" [color]="'primary'"></app-mat-star-rating>
     <h3 class="rent--profile--number">Phone number: <a [href]="'tel' + rentResult.international_phone_number">{{rentResult.international_phone_number}}
-        <mat-icon class="mat-icon-rtl-mirror">local_phone</mat-icon></a></h3>
+        <i class="em em-telephone_receiver"></i></a></h3>
     <h3>Vicinity : {{rentResult.vicinity}}</h3>
   </div>
   <div class="card mb-2">
     <mat-card>
       <mat-list>
-        <h3 mat-subheader>Opening Hours</h3>
-        <mat-list-item *ngFor="let day of rentResult.opening_hours.weekday_text">
-          <p mat-line class="opening--horus"> <mat-icon mat-list-icon class="timer">timer</mat-icon>  {{ day }} </p>
-        </mat-list-item>
+        <ng-container *ngIf="rentResult.opening_hours; else noSchedule">
+          <h3 mat-subheader>Opening Hours</h3>
+          <mat-list-item *ngFor="let day of rentResult.opening_hours.weekday_text">
+            <p mat-line class="opening--horus">
+              <mat-icon mat-list-icon class="timer">timer</mat-icon> {{ day }}
+            </p>
+          </mat-list-item>
+        </ng-container>
+        <ng-template #noSchedule>
+          <h3 mat-subheader>No schedule avaliable <i class="em em--1"></i></h3>
+        </ng-template>
 
       </mat-list>
     </mat-card>
   </div>
   <div class="mb-2 my-4">
+    <h3 class="line-text">Location</h3>
     <agm-map [latitude]="rentResult.geometry.location.lat" [longitude]="rentResult.geometry.location.lng" [zoom]="15">
       <agm-marker [latitude]="rentResult.geometry.location.lat" [longitude]="rentResult.geometry.location.lng">
       </agm-marker>
     </agm-map>
   </div>
   <div class="rent--reviewers">
-    <h3 class="line-text">Reviews</h3>
-    <mat-card class="review--card" *ngFor="let review of rentResult.reviews">
-      <div class="review--card-title">
-        <div class="review--card-content">
-          <a [href]="review.author_url">
-            <img [src]="review.profile_photo_url" alt="3123">
-          </a>
-          <p class="review--card-author">{{review.author_name}}</p>
-          <small>{{review.relative_time_description}}</small>
-          <p class="review--text">{{review.text}}</p>
-          <p>Rating: <app-mat-star-rating [rating]="5" [starCount]="review.rating" [color]="'primary'"></app-mat-star-rating></p>
-        </div>
-      </div>
-    </mat-card>
+    <ng-container *ngIf="rentResult.reviews">
+      <ng-container *ngIf="rentResult.reviews.length > 0; else noReviews">
+          <h3 class="line-text">Reviews</h3>
+          <mat-card class="review--card" *ngFor="let review of rentResult.reviews">
+            <div class="review--card-title">
+              <div class="review--card-content">
+                <a *ngIf="review.profile_photo_url" [href]="review.author_url" target="_blank">
+                  <img [src]="review.profile_photo_url" alt="3123">
+                </a>
+                <p class="review--card-author" *ngIf="review.author_name"><b>{{review.author_name}}</b></p>
+                <small *ngIf="review.relative_time_description">{{review.relative_time_description}}</small>
+                <p class="review--text" *ngIf="review.text">{{review.text}}</p>
+                <p *ngIf="review.rating">Rating: <app-mat-star-rating [rating]="5" [starCount]="review.rating" [color]="'primary'"></app-mat-star-rating>
+                </p>
+              </div>
+            </div>
+          </mat-card>
+      </ng-container>
+      <ng-template #noReviews>
+          <h3 class="line-text">There is no reviews</h3>
+      </ng-template>
+    </ng-container>
   </div>
-  <button mat-fab class="rent-button" (click)="rentIt()" matTooltip="Rent it!" [matTooltipPosition]="toolTip" color="accent" aria-label="Button that displays a tooltip in various positions">
-      <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
-    </button>
+  <button mat-fab class="rent-button" (click)="rentIt()" matTooltip="Rent it!" [matTooltipPosition]="toolTip" color="accent"
+    aria-label="Button that displays a tooltip in various positions">
+    <mat-icon class="mat-icon-rtl-mirror">restaurant</mat-icon>
+  </button>
 
 </div>
-
-

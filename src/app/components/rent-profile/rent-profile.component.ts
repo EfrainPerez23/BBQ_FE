@@ -29,6 +29,8 @@ export class RentProfileComponent implements OnInit {
             if (rentProfile.result.photos) {
               rentProfile.result.photos = _.orderBy(rentProfile.result.photos, ['width'], ['desc']);
               this.googleApiPhoto += `photoreference=${rentProfile.result.photos[0].photo_reference}&key=${environment.googleMapKey}`;
+            } else {
+              this.googleApiPhoto = '/src/assets/img/grill.jpg';
             }
           }
         });
@@ -43,8 +45,6 @@ export class RentProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(this.rentResult);
     });
   }
 

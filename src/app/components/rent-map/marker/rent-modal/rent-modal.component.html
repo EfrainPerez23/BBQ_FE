@@ -20,8 +20,8 @@
   </div>
 
   <div>
-    <button mat-raised-button [disabled]="!form.valid || loading" color="primary">Ren it! <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
-    <button mat-raised-button class="cancel--button" [disabled]="loading" (click)="onNoClick()" color="warn">Cancel</button>
+    <button type="submit" mat-raised-button [disabled]="!form.valid || loading" color="primary">Ren it! <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
+    <button mat-raised-button class="cancel--button" type="button" [disabled]="loading" (click)="onNoClick()" color="warn">Cancel</button>
   </div>
 
 </form>

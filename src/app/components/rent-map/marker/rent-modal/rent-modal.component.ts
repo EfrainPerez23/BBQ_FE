@@ -36,7 +36,7 @@ export class RentModalComponent implements OnInit {
 
   }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 
@@ -59,7 +59,7 @@ export class RentModalComponent implements OnInit {
           this.dialogRef.close();
           this.snackBar.openFromComponent(InvalidSnackBarComponent, {
             duration: 2000,
-            data: 'Thanks !'
+            data: data.message
           });
           this.router.navigate(['/rents']);
         }
@@ -68,6 +68,7 @@ export class RentModalComponent implements OnInit {
         let message = 'Try again...';
         if (error.status === 401) {
           message = error.error.description;
+          this.onNoClick();
         } else if (error.status === 500) {
           message = 'You have already rent it. Select another one ';
         }

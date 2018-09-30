@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-mat-star-rating',
@@ -18,24 +17,16 @@ export class StarRatingComponent implements OnInit {
   public snackBarDuration = 2000;
   public ratingArr = [];
 
-  constructor(private snackBar: MatSnackBar) {
-  }
+  public constructor() { }
 
 
-  ngOnInit() {
+  public ngOnInit(): void {
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);
     }
   }
-  onClick(rating: number) {
-    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
-      duration: this.snackBarDuration
-    });
-    this.ratingUpdated.emit(rating);
-    return false;
-  }
 
-  showIcon(index: number) {
+  public showIcon(index: number): string {
     if (this.rating >= index + 1) {
       return 'star';
     } else {
