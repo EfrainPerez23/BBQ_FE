@@ -6,4 +6,5 @@ export interface BQQ {
   latitude: number;
   longitude: number;
   favorite: boolean;
+  placeId: string;
 }

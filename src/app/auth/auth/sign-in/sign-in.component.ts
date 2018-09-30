@@ -1,5 +1,11 @@
+import { LocalStorageService } from './../../../global/services/local-storage.service';
+import { AuthService, UserLogged } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
+import { InvalidSnackBarComponent } from '../../../global/components/invalid-snack-bar/invalid-snack-bar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,8 +15,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SignInComponent implements OnInit {
 
   public form: FormGroup;
+  public loading: boolean;
 
-  public constructor() {
+  public constructor(private authService: AuthService, private snackBar: MatSnackBar,
+    private localStorageService: LocalStorageService, private router: Router) {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required])
@@ -21,7 +29,22 @@ export class SignInComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.form.value) {
-      console.log(this.form.value);
+      this.loading = true;
+      this.authService.signIn(this.form.value).subscribe((user: UserLogged): void => {
+        this.localStorageService.setItem('user', JSON.stringify(user));
+        this.loading = false;
+        window.location.href = '/';
+      }, (error: HttpErrorResponse): void => {
+        this.loading = false;
+        let message = 'Try again...';
+        if (error.status === 401) {
+          message = error.error.description;
+        }
+        this.snackBar.openFromComponent(InvalidSnackBarComponent, {
+          duration: 2000,
+          data: message
+        });
+      });
     }
   }
 }

@@ -14,7 +14,7 @@
 
       <div>
         <button mat-raised-button [disabled]="
-            !form.valid" color="primary">Sign In</button>
+            !form.valid" color="primary">Sign In  <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
       </div>
     </div>
   </form>
