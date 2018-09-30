@@ -25,14 +25,18 @@ export class RentComponent implements OnInit {
     private localStorageService: LocalStorageService, private router: Router) { }
 
   public ngOnInit(): void {
-    this.googleApiPhoto += `photoreference=${this.rent.photo}&key=${environment.googleMapKey}`;
+    if (this.rent.photo) {
+      this.googleApiPhoto += `photoreference=${this.rent.photo}&key=${environment.googleMapKey}`;
+    } else {
+      this.googleApiPhoto = '/src/assets/img/grill.jpg';
+    }
   }
 
   public favorite(): void {
     this.loading = true;
     this.rentService.favoriteRent(this.rent).subscribe(((data: {message: string, data: BQQ}): void => {
       if (data) {
-        this.rent.favorite = !this.rent.favorite;
+        this.rent.favorite = data.data.favorite;
         this.snackBar.openFromComponent(InvalidSnackBarComponent, {
           duration: 3000,
           data: this.rent.favorite ? 'Added to favorite' : 'Remove from favorite'

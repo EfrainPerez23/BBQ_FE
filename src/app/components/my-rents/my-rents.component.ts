@@ -29,6 +29,11 @@ export class MyRentsComponent implements OnInit {
           duration: 2000,
           data:  error.error.message
         });
+      } else if (error.status === 404) {
+        this.snackBar.openFromComponent(InvalidSnackBarComponent, {
+          duration: 2000,
+          data:  error.error.message
+        });
       }
     });
   }
@@ -38,7 +43,7 @@ export class MyRentsComponent implements OnInit {
 
   public delete(id: number): void {
     this.rents.data = _.remove(this.rents.data, (data: BQQ) => {
-      return id === data.id;
+      return id !== data.id;
     });
   }
 

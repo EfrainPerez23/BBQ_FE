@@ -18,7 +18,7 @@
           <h1>{{marker.name}}</h1>
         </div>
       </div>
-      <img [src]="googleApiPhoto | safeUrl" alt="photo">
+      <img class="grill--image" [src]="googleApiPhoto | safeUrl" alt="photo">
       <div>
         <b>Rating:</b>
         <app-mat-star-rating [rating]="5" [starCount]="marker.rating" [color]="'primary'"></app-mat-star-rating>
