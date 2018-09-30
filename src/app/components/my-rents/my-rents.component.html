@@ -1,1 +1,6 @@
-<app-rent *ngFor="let jj of [1]" ></app-rent>
+<div *ngIf="rents">
+  <div class="container">
+    <h1>Your rents</h1>
+    <app-rent *ngFor="let rent of rents.data" [rent]="rent" (deleted)="delete($event)"></app-rent>
+  </div>
+</div>

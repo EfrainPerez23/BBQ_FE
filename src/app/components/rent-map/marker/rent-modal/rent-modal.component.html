@@ -3,7 +3,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
   <div>
-    <mat-form-field>
+    <mat-form-field *ngIf="false" >
       <input matInput [matDatepicker]="dp3" placeholder="Date to rent" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
       <mat-datepicker #dp3 disabled="false"></mat-datepicker>
@@ -20,8 +20,8 @@
   </div>
 
   <div>
-    <button mat-raised-button [disabled]="!form.valid" color="primary">Ren it! <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
-    <button mat-raised-button class="cancel--button" (click)="onNoClick()" color="warn">Cancel</button>
+    <button mat-raised-button [disabled]="!form.valid || loading" color="primary">Ren it! <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
+    <button mat-raised-button class="cancel--button" [disabled]="loading" (click)="onNoClick()" color="warn">Cancel</button>
   </div>
 
 </form>

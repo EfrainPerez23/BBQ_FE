@@ -8,7 +8,7 @@ import { RentMapComponent } from './rent-map/rent-map.component';
 import { MarkerComponent } from './rent-map/marker/marker.component';
 import { MaterialModule } from '../material-module/material.module';
 import { environment } from '../../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { GlobalModule } from '../global/components/global.module';
 import { SafeUrlPipe } from '../global/pipes/safe-url.pipe';
@@ -18,6 +18,9 @@ import { RentProfileComponent } from './rent-profile/rent-profile.component';
 import { MyRentsComponent } from './my-rents/my-rents.component';
 import { RentComponent } from './my-rents/rent/rent.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthInterceptorService } from '../global/services/interceptor.service';
+import { LoginInterceptorService } from '../auth/service/login-interceptor.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 
 @NgModule({
@@ -53,6 +56,12 @@ import { ProfileComponent } from './profile/profile.component';
     MyRentsComponent,
     RentComponent
   ],
-  entryComponents: [RentModalComponent]
+  entryComponents: [RentModalComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_SNACK_BAR_DATA, useValue: [] },
+  ]
 })
 export class ComponentModule {}

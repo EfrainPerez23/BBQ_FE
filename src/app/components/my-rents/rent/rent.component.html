@@ -1,23 +1,21 @@
-<div class="container">
-  <h1>Your rents</h1>
-  <mat-card class="review--card">
-    <div class="review--card-title">
-      <div class="review--card-content row">
-        <div class="col-xs-12 col-md-6 col-xl-3">
-          <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="3123">
-        </div>
-        <div class="col-xs-12 col-md-6 col-xl-9">
-          <p class="review--card-author">Nombre</p>
-          <small>Modelo</small>
-          <p>asdfasdfasdf</p>
-          <mat-card-actions>
-              <button mat-raised-button color="accent">See More</button>
-              <button mat-raised-button color="primary">Favorite <mat-icon class="mat-icon-rtl-mirror">favorite_border</mat-icon>
-                <mat-icon class="mat-icon-rtl-mirror">favorite</mat-icon></button>
-                <button mat-raised-button color="warn">Delete</button>
-            </mat-card-actions>
-        </div>
+<mat-card class="review--card">
+  <div class="review--card-title">
+    <div class="review--card-content row">
+      <div class="col-xs-12 col-md-6 col-xl-3">
+        <img [src]="googleApiPhoto | safeUrl" alt="grill" (error)="googleApiPhoto = 'https://www.wikihow.com/images/thumb/0/0a/Grill-Sausage-Step-7-Version-4.jpg/aid1419737-v4-900px-Grill-Sausage-Step-7-Version-4.jpg'">
+      </div>
+      <div class="col-xs-12 col-md-6 col-xl-9">
+        <p class="review--card-author">{{rent.name}}</p>
+        <small>{{rent.model}}</small>
+        <mat-card-actions>
+          <a [disabled]="loading" mat-raised-button color="accent" [routerLink]="['/bbq', rent.placeId]">See More <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></a>
+          <button [disabled]="loading" mat-raised-button color="primary" (click)="favorite()">Favorite
+            <mat-icon *ngIf="!loading"  class="mat-icon-rtl-mirror">{{rent.favorite ? 'favorite' :'favorite_border'}} </mat-icon>
+            <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i>
+          </button>
+          <button [disabled]="loading" mat-raised-button color="warn" (click)="deleteRent()">Delete <i class="fas fa-spinner fa-spin" *ngIf="loading" ></i></button>
+        </mat-card-actions>
       </div>
     </div>
-  </mat-card>
-</div>
+  </div>
+</mat-card>
