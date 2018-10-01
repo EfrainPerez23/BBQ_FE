@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +8,6 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RentMapComponent } from './rent-map/rent-map.component';
 import { MarkerComponent } from './rent-map/marker/marker.component';
 import { MaterialModule } from '../material-module/material.module';
-import { environment } from '../../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { GlobalModule } from '../global/components/global.module';
@@ -21,14 +21,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptorService } from '../global/services/interceptor.service';
 import { LoginInterceptorService } from '../auth/service/login-interceptor.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA } from '@angular/material';
-
+import { environment } from './../../environments/environment.prod';
 
 @NgModule({
   imports: [
     CommonModule,
     ComponentRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: environment.googleMapKey,
+      apiKey: 'AIzaSyBbOagPWZzYBfh1MfWfkml-tzuqGFXj2jA',
       libraries: ['places', 'geometry']
     }),
     AgmSnazzyInfoWindowModule,

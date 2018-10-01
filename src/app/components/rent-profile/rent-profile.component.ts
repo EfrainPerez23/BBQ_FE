@@ -30,7 +30,7 @@ export class RentProfileComponent implements OnInit {
               rentProfile.result.photos = _.orderBy(rentProfile.result.photos, ['width'], ['desc']);
               this.googleApiPhoto += `photoreference=${rentProfile.result.photos[0].photo_reference}&key=${environment.googleMapKey}`;
             } else {
-              this.googleApiPhoto = '/src/assets/img/grill.jpg';
+              this.googleApiPhoto = 'assets/img/grill.jpg';
             }
           }
         });

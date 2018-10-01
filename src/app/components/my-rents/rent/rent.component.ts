@@ -28,7 +28,7 @@ export class RentComponent implements OnInit {
     if (this.rent.photo) {
       this.googleApiPhoto += `photoreference=${this.rent.photo}&key=${environment.googleMapKey}`;
     } else {
-      this.googleApiPhoto = '/src/assets/img/grill.jpg';
+      this.googleApiPhoto = 'assets/img/grill.jpg';
     }
   }
 
