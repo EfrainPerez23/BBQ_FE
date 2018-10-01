@@ -27,7 +27,7 @@ export class MarkerComponent implements OnInit {
     if (this.marker.photos) {
       this.googleApiPhoto += `photoreference=${this.marker.photos[0].photo_reference}&key=${this.googleMapKey}`;
     } else {
-      this.googleApiPhoto = '/src/assets/img/grill.jpg';
+      this.googleApiPhoto = 'assets/img/grill.jpg';
     }
   }
 

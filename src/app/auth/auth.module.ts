@@ -8,7 +8,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { MaterialModule } from '../material-module/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { environment } from '../../environments/environment';
+import { environment } from './../../environments/environment.prod';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalModule } from '../global/components/global.module';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -20,7 +20,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     MaterialModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: environment.googleMapKey,
+      apiKey: 'AIzaSyBbOagPWZzYBfh1MfWfkml-tzuqGFXj2jA',
       libraries: ['places', 'geometry']
     }),
     HttpClientModule,

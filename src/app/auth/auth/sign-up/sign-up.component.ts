@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material';
 export class SignUpComponent implements OnInit {
 
   public form: FormGroup;
-  public lat: number;
-  public lng: number;
+  public lat = 51.678418;
+  public lng = 7.809007;
   public loading: boolean;
 
   public constructor(private authService: AuthService, private snackBar: MatSnackBar) {
